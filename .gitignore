@@ -26,7 +26,7 @@ browscap*
 
 # OS Files #
 .DS_Store
-
+*.iml
 *.class
 
 gradlew.bat
