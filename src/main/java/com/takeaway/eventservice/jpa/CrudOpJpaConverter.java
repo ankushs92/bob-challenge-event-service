@@ -3,7 +3,9 @@ package com.takeaway.eventservice.jpa;
 import com.takeaway.eventservice.domain.enums.CrudOp;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter(autoApply = true)
 public class CrudOpJpaConverter implements AttributeConverter<CrudOp, Integer> {
 
     @Override

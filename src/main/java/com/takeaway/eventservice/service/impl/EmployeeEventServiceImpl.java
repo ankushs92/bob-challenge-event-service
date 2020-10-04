@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 @Transactional
 public class EmployeeEventServiceImpl implements EmployeeEventService {
@@ -26,6 +30,12 @@ public class EmployeeEventServiceImpl implements EmployeeEventService {
     public ListenableFuture<EmployeeEvent> save(final EmployeeEventPayload payload) {
         Assert.notNull(payload, "EmployeeEventPayload add cannot be null");
         return new AsyncResult<>(repository.save(new EmployeeEvent(payload)));
+    }
+
+    @Override
+    public Optional<List<EmployeeEvent>> findAllAscendingByCreationTime(final UUID employeeId) {
+        Assert.notNull(employeeId, "employeeId add cannot be null");
+        return repository.findAllByEmployeeIdOrderByCreatedAsc(employeeId);
     }
 
 }

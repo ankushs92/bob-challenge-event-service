@@ -20,15 +20,13 @@ public class EmployeeEvent {
     @Id
     @GeneratedValue(generator = "UUID")
     @Column(columnDefinition = "VARCHAR(50)")
-    @Type(type="uuid-char") // For human readable uuid in mysql, otherwise it's binary
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
     @Column(name = "employee_id", columnDefinition = "VARCHAR(50)")
-    @Type(type="uuid-char")
     private UUID employeeId;
 
-    @Column(name = "op")
+    @Column(name = "op", nullable = false, columnDefinition = "TINYINT")
     @Convert(converter = CrudOpJpaConverter.class)
     private CrudOp crudOp;
 
@@ -36,7 +34,7 @@ public class EmployeeEvent {
     private ZonedDateTime created;
 
     @Column(name = "payload", columnDefinition = "json")
-    private String payload;
+    private EmployeeEventPayload payload;
 
     public EmployeeEvent() {}
 
@@ -44,7 +42,7 @@ public class EmployeeEvent {
         Assert.notNull(payload, "payload cannot be null or empty");
         this.created = ZonedDateTime.now(ZoneId.of("UTC"));
         this.crudOp = payload.getCrudOp();
-        this.payload = Json.encode(payload);
+        this.payload = payload;
         this.employeeId = payload.getId();
     }
 
@@ -72,12 +70,20 @@ public class EmployeeEvent {
         this.created = created;
     }
 
-    public String getPayload() {
+    public EmployeeEventPayload getPayload() {
         return payload;
     }
 
-    public void setPayload(String payload) {
+    public void setPayload(EmployeeEventPayload payload) {
         this.payload = payload;
+    }
+
+    public UUID getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(UUID employeeId) {
+        this.employeeId = employeeId;
     }
 }
 
