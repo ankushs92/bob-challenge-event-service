@@ -2,9 +2,9 @@ package com.takeaway.eventservice.domain;
 
 import com.takeaway.eventservice.domain.enums.CrudOp;
 import com.takeaway.eventservice.jpa.CrudOpJpaConverter;
+import com.takeaway.eventservice.jpa.UUIDJpaConverter;
 import com.takeaway.eventservice.payload.EmployeeEventPayload;
 import com.takeaway.eventservice.util.Assert;
-import com.takeaway.eventservice.util.Json;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -20,7 +20,9 @@ public class EmployeeEvent {
     @Id
     @GeneratedValue(generator = "UUID")
     @Column(columnDefinition = "VARCHAR(50)")
+    @Type(type="uuid-char") // For human readable uuid in mysql, otherwise it's binary
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Convert(converter = UUIDJpaConverter.class)
     private UUID id;
 
     @Column(name = "employee_id", columnDefinition = "VARCHAR(50)")
@@ -69,6 +71,7 @@ public class EmployeeEvent {
     public void setCreated(ZonedDateTime created) {
         this.created = created;
     }
+
 
     public EmployeeEventPayload getPayload() {
         return payload;

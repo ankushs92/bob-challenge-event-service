@@ -1,6 +1,5 @@
 package com.takeaway.eventservice.controller;
 
-import com.takeaway.eventservice.domain.EmployeeEvent;
 import com.takeaway.eventservice.resp.EmployeeEventListResp;
 import com.takeaway.eventservice.service.EmployeeEventService;
 import org.springframework.http.HttpStatus;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

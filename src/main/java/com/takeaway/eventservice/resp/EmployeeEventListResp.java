@@ -2,16 +2,11 @@ package com.takeaway.eventservice.resp;
 
 import com.takeaway.eventservice.domain.EmployeeEvent;
 import com.takeaway.eventservice.domain.enums.CrudOp;
-import com.takeaway.eventservice.jpa.CrudOpJpaConverter;
 import com.takeaway.eventservice.payload.EmployeeEventPayload;
 import com.takeaway.eventservice.util.Assert;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -36,6 +31,7 @@ public class EmployeeEventListResp {
         private final UUID employeeId;
         private final CrudOp crudOp;
         private final ZonedDateTime created;
+        private final String timeZone;
         private final EmployeeEventPayload data;
 
         EmployeeEventResp(final EmployeeEvent event) {
@@ -45,6 +41,7 @@ public class EmployeeEventListResp {
             this.crudOp = event.getCrudOp();
             this.created = event.getCreated();
             this.data = event.getPayload();
+            this.timeZone = "UTC";
         }
 
         public UUID getId() {
@@ -65,6 +62,10 @@ public class EmployeeEventListResp {
 
         public EmployeeEventPayload getData() {
             return data;
+        }
+
+        public String getTimeZone() {
+            return timeZone;
         }
     }
 

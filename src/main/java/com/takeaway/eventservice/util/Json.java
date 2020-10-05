@@ -19,7 +19,7 @@ import java.time.ZonedDateTime;
 public class Json {
 
     private static final Logger logger = LoggerFactory.getLogger(Json.class);
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    public static final ObjectMapper objectMapper = new ObjectMapper();
 
     static {
         var simpleModule = new SimpleModule();
