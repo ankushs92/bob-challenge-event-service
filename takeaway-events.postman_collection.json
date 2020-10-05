@@ -1,0 +1,22 @@
+{
+	"variables": [],
+	"info": {
+		"name": "takeaway-events",
+		"_postman_id": "55c86988-5e9e-6dc3-de81-6543b9b00865",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all employee events by employee uuid",
+			"request": {
+				"url": "localhost:9090/employee/88aa4116-d2f8-4b25-bb8d-59941edda6fe/events",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -38,7 +38,6 @@ public class Json {
             return objectMapper
                     .readValue(json, clazz);
         } catch (final JsonProcessingException e) {
-            logger.error("", e);
             return null;
         }
     }
@@ -50,7 +49,6 @@ public class Json {
                     .writeValueAsString(object);
         }
         catch (final JsonProcessingException ex) {
-            logger.error("", ex);
             return null;
         }
     }
