@@ -45,7 +45,7 @@ public class EmployeeEventPayload {
         this.crudOp = crudOp;
     }
 
-    private static class DepartmentEventReq {
+    public static class DepartmentEventReq {
         private final Integer id;
         private final String name;
 
@@ -99,5 +99,17 @@ public class EmployeeEventPayload {
         return crudOp;
     }
 
-
+    @Override
+    public String toString() {
+        return "EmployeeEventPayload{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", department=" + department +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", crudOp=" + crudOp +
+                '}';
+    }
 }

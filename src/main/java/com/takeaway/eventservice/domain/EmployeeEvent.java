@@ -88,5 +88,16 @@ public class EmployeeEvent {
     public void setEmployeeId(UUID employeeId) {
         this.employeeId = employeeId;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeEvent{" +
+                "id=" + id +
+                ", employeeId=" + employeeId +
+                ", crudOp=" + crudOp +
+                ", created=" + created +
+                ", payload=" + payload +
+                '}';
+    }
 }
 
